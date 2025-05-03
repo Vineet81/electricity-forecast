@@ -25,7 +25,12 @@ st.dataframe(df.head())
 def load_model():
     url = "https://huggingface.co/VineetSaini81/electricity-forecast-model/resolve/main/model.pkl"
     response = requests.get(url)
-    return pickle.loads(response.content)
+    if response.status_code == 200:
+        model = pickle.loads(response.content)
+        return model
+    else:
+        st.error(f"Failed to fetch model. Status code: {response.status_code}")
+        return None
 
 model = load_model()
 # Feature selection
