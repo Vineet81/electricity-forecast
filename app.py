@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
-import request
+import requests
 import matplotlib.pyplot as plt
 
 st.title("⚡ Electricity Forecasting App")
