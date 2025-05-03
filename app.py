@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 import requests
+import zipfile
 import matplotlib.pyplot as plt
 
 st.title("⚡ Electricity Forecasting App")
@@ -10,9 +11,10 @@ st.write("Predict global active power usage based on historical electrical readi
 # Load dataset
 @st.cache_data
 def load_data():
-    df = pd.read_csv("electricity.csv", parse_dates=['Datetime'], index_col='Datetime')
+    with zipfile.ZipFile("electricity.zip") as z:
+        with z.open("electricity.csv") as f:
+            df = pd.read_csv(f, parse_dates=['Datetime'], index_col='Datetime')
     return df
-
 df = load_data()
 
 st.subheader("📊 Sample of the Dataset")
