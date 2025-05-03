@@ -19,8 +19,8 @@ st.subheader("📊 Sample of the Dataset")
 st.dataframe(df.head())
 
 # Load trained model
-#model = joblib.load("model.pkl")
-url = "https://huggingface.co/VineetSaini81/electricity-forecast-model/resolve/main/model.pkl"
+def load_model():
+    url = "https://huggingface.co/your-username/your-model-name/resolve/main/model.pkl"
     response = requests.get(url)
     return pickle.loads(response.content)
 
