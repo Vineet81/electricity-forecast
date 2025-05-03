@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import request
 import matplotlib.pyplot as plt
 
 st.title("⚡ Electricity Forecasting App")
@@ -18,8 +19,12 @@ st.subheader("📊 Sample of the Dataset")
 st.dataframe(df.head())
 
 # Load trained model
-model = joblib.load("model.pkl")
+#model = joblib.load("model.pkl")
+url = "https://huggingface.co/your-username/your-model-name/resolve/main/model.pkl"
+    response = requests.get(url)
+    return pickle.loads(response.content)
 
+model = load_model()
 # Feature selection
 features = ['Global_reactive_power', 'Voltage', 'Global_intensity', 'Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3']
 
